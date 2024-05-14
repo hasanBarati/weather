@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
 import { WEATHER_API_KEY, WEATHER_API_URL } from "../../api";
-import Search from "./search";
+
 import CurrentWeather from "./current-weather";
 import Forecast from "./forecast";
+import { ExtendedForecastData, LocationType, WeatherData } from "../../types";
 
 function Weather() {
-  const [currentWeather, setCurrentWeather] = useState(null);
-  const [forecast, setForecast] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState({
+  const [currentWeather, setCurrentWeather] = useState<WeatherData>();
+  const [forecast, setForecast] = useState<ExtendedForecastData>();
+  const [currentLocation, setCurrentLocation] = useState<LocationType>({
     lat: 32.4279,
     lon: 53.688,
   });
 
-  
-
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log(position);
+      setCurrentLocation({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      });
+    });
+
+    console.log("lat after =change",currentLocation.lat)
     const currentWeatherFetch = fetch(
       `${WEATHER_API_URL}/weather?q=${"Tehran"}&lat=${
         currentLocation.lat
       }&lon=${currentLocation.lon}&appid=${WEATHER_API_KEY}&units=metric`
     );
     const forecastFetch = fetch(
-      `${WEATHER_API_URL}/forecast?lat=${currentLocation.lat}&lon=${
-        currentLocation.lon
-      }&appid=${WEATHER_API_KEY}&units=metric`
+      `${WEATHER_API_URL}/forecast?lat=${currentLocation.lat}&lon=${currentLocation.lon}&appid=${WEATHER_API_KEY}&units=metric`
     );
 
     Promise.all([currentWeatherFetch, forecastFetch])
@@ -36,6 +42,7 @@ function Weather() {
       })
       .catch(console.log);
   }, []);
+  
   return (
     <div className="[&>*]:text-white p-5 flex flex-col items-center justify-center mx-auto bg-gradient-to-t from-[#08244f] via-[#134cb5] to-[#0b42ab] ">
       {/* <Search onSearchChange={handleOnSearchChange} /> */}

@@ -11,3 +11,5 @@ export const geoApiOptions = {
   export const WEATHER_API_KEY = "f8d3f6829af8bfb9f0d9da504c7dea32"; 
 
   
+
+  // https://openweathermap.org/img/w
