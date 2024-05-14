@@ -16,6 +16,7 @@ function Weather() {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log(position);
+      alert("internal error")
       alert(JSON.stringify(position))
       setCurrentLocation({
         lat: position.coords.latitude,
