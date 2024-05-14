@@ -24,7 +24,7 @@ function Weather() {
         lon: position.coords.longitude,
       });
     });
-    alert(JSON.stringify(currentLocation))
+    alert(JSON.stringify(navigator))
     alert(navigator)
 
     const currentWeatherFetch = fetch(
