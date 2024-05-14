@@ -9,24 +9,26 @@ function Weather() {
   const [currentWeather, setCurrentWeather] = useState<WeatherData>();
   const [forecast, setForecast] = useState<ExtendedForecastData>();
   const [currentLocation, setCurrentLocation] = useState<LocationType>({
-    lat: 32.4279,
-    lon: 53.688,
+    lat: 35.771839,
+    lon: 51.409461,
   });
 
   useEffect(() => {
+    console.log(navigator,navigator.geolocation)
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position);
+ 
       alert("internal error")
-      alert(JSON.stringify(position))
+
       setCurrentLocation({
         lat: position.coords.latitude,
         lon: position.coords.longitude,
       });
     });
     alert(JSON.stringify(currentLocation))
-    console.log("lat after =change",currentLocation.lat)
+    alert(navigator)
+
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?q=${"Tehran"}&lat=${
+      `${WEATHER_API_URL}/weather?lat=${
         currentLocation.lat
       }&lon=${currentLocation.lon}&appid=${WEATHER_API_KEY}&units=metric`
     );
