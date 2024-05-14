@@ -21,7 +21,7 @@ function Weather() {
         lon: position.coords.longitude,
       });
     });
-
+    alert(JSON.stringify(currentLocation))
     console.log("lat after =change",currentLocation.lat)
     const currentWeatherFetch = fetch(
       `${WEATHER_API_URL}/weather?q=${"Tehran"}&lat=${
@@ -42,7 +42,7 @@ function Weather() {
       })
       .catch(console.log);
   }, []);
-  
+
   return (
     <div className="[&>*]:text-white p-5 flex flex-col items-center justify-center mx-auto bg-gradient-to-t from-[#08244f] via-[#134cb5] to-[#0b42ab] ">
       {/* <Search onSearchChange={handleOnSearchChange} /> */}

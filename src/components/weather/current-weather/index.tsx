@@ -1,15 +1,10 @@
 import { WeatherData } from "../../../types";
 
-const CurrentWeather = ({ data }:{data:WeatherData}) => {
+const CurrentWeather = ({ data }: { data: WeatherData }) => {
   return (
     <div className="flex flex-col items-center min-w-96 p-5">
       <div className="flex flex-end w-full gap-1">
-      <img
-        alt="location"
-      
-        src={`icons/location.svg`}
-      
-      />
+        <img alt="location" src={`icons/location.svg`} />
         <p className="text-2xl font-bold text-left">{data.city}</p>
       </div>
 
@@ -56,8 +51,6 @@ const CurrentWeather = ({ data }:{data:WeatherData}) => {
           </div>
         </div>
       </div>
-
-  
     </div>
   );
 };

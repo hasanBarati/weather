@@ -71,3 +71,12 @@ export type LocationType = {
   lat: number;
   lon: number;
 };
+
+export type Days =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
