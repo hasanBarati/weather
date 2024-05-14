@@ -1,55 +1,23 @@
-import { useEffect, useState } from "react";
-import { WEATHER_API_KEY, WEATHER_API_URL } from "../../api";
-
+import Loading from "../common/loading";
 import CurrentWeather from "./current-weather";
 import Forecast from "./forecast";
-import { ExtendedForecastData, LocationType, WeatherData } from "../../types";
+import { useFetchData } from "./hooks/useFetchData";
 
 function Weather() {
-  const [currentWeather, setCurrentWeather] = useState<WeatherData>();
-  const [forecast, setForecast] = useState<ExtendedForecastData>();
-  const [currentLocation, setCurrentLocation] = useState<LocationType>({
-    lat: 35.771839,
-    lon: 51.409461,
-  });
+  const { currentWeather, forecast, fetchData } = useFetchData();
 
-  useEffect(() => {
-    console.log(navigator,navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(function (position) {
- 
-      alert("internal error")
-
-      setCurrentLocation({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      });
-    });
-    alert(JSON.stringify(navigator))
-    alert(navigator)
-
-    const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?lat=${
-        currentLocation.lat
-      }&lon=${currentLocation.lon}&appid=${WEATHER_API_KEY}&units=metric`
+  if (fetchData === "ERROR") {
+    return (
+      <div className="flex justify-center items-center h-dvh">
+        <p className="text-red-500 text-4xl font-bold">خطایی رخ داده است</p>
+      </div>
     );
-    const forecastFetch = fetch(
-      `${WEATHER_API_URL}/forecast?lat=${currentLocation.lat}&lon=${currentLocation.lon}&appid=${WEATHER_API_KEY}&units=metric`
-    );
+  }
 
-    Promise.all([currentWeatherFetch, forecastFetch])
-      .then(async (response) => {
-        const weatherResponse = await response[0].json();
-        const forcastResponse = await response[1].json();
-
-        setCurrentWeather({ city: "Tehran", ...weatherResponse });
-        setForecast({ city: "Tehran", ...forcastResponse });
-      })
-      .catch(console.log);
-  }, []);
-
-  return (
-    <div className="[&>*]:text-white p-5 flex flex-col items-center justify-center mx-auto bg-gradient-to-t from-[#08244f] via-[#134cb5] to-[#0b42ab] ">
-      {/* <Search onSearchChange={handleOnSearchChange} /> */}
+  return fetchData === "PENDING" ? (
+    <Loading />
+  ) : (
+    <div className="bgColor ">
       {currentWeather && <CurrentWeather data={currentWeather} />}
       {forecast && <Forecast data={forecast} />}
     </div>

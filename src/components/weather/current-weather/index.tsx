@@ -21,8 +21,8 @@ const CurrentWeather = ({ data }: { data: WeatherData }) => {
         </p>
         <p>Precipitations</p>
         <div className="flex gap-2">
-          <p>Max:10</p>
-          <p>Min:12</p>
+          <p>Max:{data.main.temp_max}</p>
+          <p>Min:{data.main.temp_min}</p>
         </div>
         <div className=" rounded-2xl bg-[#001026] flex justify-between w-full p-2">
           <div className="flex gap-1">

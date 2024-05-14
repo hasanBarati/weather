@@ -6,3 +6,8 @@
   background-color:linear-gradient(90deg, rgba(8,36,79,1) 0%, rgba(19,76,181,1) 47%, rgba(11,66,171,1) 100%)
 }
 
+@layer components {
+  .bgColor {
+    @apply [&>*]:text-white p-5 flex flex-col items-center justify-center mx-auto bg-gradient-to-t from-[#08244f] via-[#134cb5] to-[#0b42ab];
+  }
+}

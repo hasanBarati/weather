@@ -80,3 +80,6 @@ export type Days =
   | "Friday"
   | "Saturday"
   | "Sunday";
+
+
+export type  ApiStatus = "IDLE" | "PENDING" | "SUCCESS" | "ERROR";  
