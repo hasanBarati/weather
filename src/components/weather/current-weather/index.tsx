@@ -1,6 +1,7 @@
 import { WeatherData } from "../../../types";
 
 const CurrentWeather = ({ data }: { data: WeatherData }) => {
+  console.log(data)
   return (
     <div className="flex flex-col items-center min-w-96 p-5">
       <div className="flex flex-end w-full gap-1">
@@ -14,7 +15,7 @@ const CurrentWeather = ({ data }: { data: WeatherData }) => {
         src={`icons/${data.weather[0].icon}.png`}
         width="100"
       />
-      <p className="weather-description">{data.weather[0].description}</p>
+      <p>{data.weather[0].description}</p>
       <div className=" flex flex-col justify-center items-center gap-y-2 w-full">
         <p className="text text-4xl font-bold">
           {Math.round(data.main.temp)}°C
@@ -24,7 +25,8 @@ const CurrentWeather = ({ data }: { data: WeatherData }) => {
           <p>Max:{data.main.temp_max}</p>
           <p>Min:{data.main.temp_min}</p>
         </div>
-        <div className=" rounded-2xl bg-[#001026] flex justify-between w-full p-2">
+        {}
+        <div className=" rounded-2xl bg-[#2a4f83] flex justify-between w-full p-2">
           <div className="flex gap-1">
             <img
               alt="weather"

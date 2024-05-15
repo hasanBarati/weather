@@ -1,15 +1,18 @@
+
 import Loading from "../common/loading";
 import CurrentWeather from "./current-weather";
 import Forecast from "./forecast";
 import { useFetchData } from "./hooks/useFetchData";
 
+
 function Weather() {
+
   const { currentWeather, forecast, fetchData } = useFetchData();
 
   if (fetchData === "ERROR") {
     return (
       <div className="flex justify-center items-center h-dvh">
-        <p className="text-red-500 text-4xl font-bold">خطایی رخ داده است</p>
+        <p className="text-red-500 text-4xl font-bold">Oops Something went wrong</p>
       </div>
     );
   }
