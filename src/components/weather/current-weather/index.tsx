@@ -1,7 +1,7 @@
 import { WeatherData } from "../../../types";
 
 const CurrentWeather = ({ data }: { data: WeatherData }) => {
-  console.log(data)
+ 
   return (
     <div className="flex flex-col items-center min-w-96 p-5">
       <div className="flex flex-end w-full gap-1">
